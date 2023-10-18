@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 
 class HomeTab extends StatelessWidget {
@@ -49,6 +50,7 @@ class HomeTab extends StatelessWidget {
               SizedBox(
                 height: 500,
                 child: GridView.builder(
+                  itemCount: herbalPlants.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (context, index) {
@@ -72,7 +74,7 @@ class HomeTab extends StatelessWidget {
                             ),
                           ),
                           TextWidget(
-                            text: 'Name of Plant',
+                            text: herbalPlants[index].commonName,
                             fontSize: 18,
                             fontFamily: 'Bold',
                           ),

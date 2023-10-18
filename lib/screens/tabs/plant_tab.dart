@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 
 class PlantTab extends StatelessWidget {
@@ -10,7 +11,7 @@ class PlantTab extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
       child: SizedBox(
         child: ListView.separated(
-          itemCount: 50,
+          itemCount: herbalPlants.length,
           separatorBuilder: (context, index) {
             return const Divider();
           },
@@ -22,12 +23,12 @@ class PlantTab extends StatelessWidget {
                 color: Colors.black,
               ),
               title: TextWidget(
-                text: 'Name of plant here',
+                text: herbalPlants[index].commonName,
                 fontSize: 18,
                 fontFamily: 'Bold',
               ),
               subtitle: TextWidget(
-                text: 'Description of plant here',
+                text: herbalPlants[index].description,
                 fontSize: 12,
                 fontFamily: 'Regular',
               ),
