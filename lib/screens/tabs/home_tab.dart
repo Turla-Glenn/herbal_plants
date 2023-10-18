@@ -26,11 +26,19 @@ class HomeTab extends StatelessWidget {
               Container(
                 height: 150,
                 width: double.infinity,
-                color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  image: DecorationImage(
+                    opacity: 125,
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                        'assets/images/${herbalPlants[0].commonName}.jpg'),
+                  ),
+                ),
                 child: Center(
                   child: TextWidget(
-                    text: 'Insert Image here',
-                    fontSize: 18,
+                    text: herbalPlants[0].commonName,
+                    fontSize: 24,
                     color: Colors.white,
                     fontFamily: 'Bold',
                   ),
@@ -61,15 +69,13 @@ class HomeTab extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            color: Colors.black,
                             width: 500,
                             height: 125,
-                            child: Center(
-                              child: TextWidget(
-                                text: 'Insert Image here',
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontFamily: 'Bold',
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                    'assets/images/${herbalPlants[index].commonName}.jpg'),
                               ),
                             ),
                           ),

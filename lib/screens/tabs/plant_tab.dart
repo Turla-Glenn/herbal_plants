@@ -20,7 +20,13 @@ class PlantTab extends StatelessWidget {
               leading: Container(
                 width: 75,
                 height: 75,
-                color: Colors.black,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                        'assets/images/${herbalPlants[index].commonName}.jpg'),
+                  ),
+                ),
               ),
               title: TextWidget(
                 text: herbalPlants[index].commonName,

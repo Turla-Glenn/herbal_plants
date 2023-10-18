@@ -29,9 +29,15 @@ class InfoTab extends StatelessWidget {
                   return ExpansionTile(
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
                     leading: Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.black,
+                      width: 75,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                              'assets/images/${herbalPlants[index].commonName}.jpg'),
+                        ),
+                      ),
                     ),
                     title: TextWidget(
                       text: herbalPlants[index].commonName,
