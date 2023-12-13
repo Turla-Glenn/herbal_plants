@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
@@ -73,13 +74,97 @@ class _CameraTabState extends State<CameraTab> {
         threshold: 0.2, // defaults to 0.1
         asynch: true);
     setState(() {
-      print('res $res');
       result = res!;
-      print('result:$result');
-      str = '${result[0]['label']}';
+
+      str = result[0]['label'].toString().split(' ')[1];
     });
 
     print(str);
+    for (int index = 0; index < herbalPlants.length; index++) {
+      if (herbalPlants[index].commonName == str) {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return SizedBox(
+              height: 500,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                                'assets/images/${herbalPlants[index].commonName}.jpg'),
+                          ),
+                        ),
+                      ),
+                      const Divider(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextWidget(
+                        text: herbalPlants[index].commonName,
+                        fontSize: 24,
+                        fontFamily: 'Bold',
+                        color: Colors.black,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextWidget(
+                        text:
+                            'Scientific name: ${herbalPlants[index].scientificName}',
+                        fontSize: 18,
+                        fontFamily: 'Bold',
+                        color: Colors.black,
+                      ),
+                      TextWidget(
+                        text:
+                            'Plant description: ${herbalPlants[index].description}',
+                        fontSize: 14,
+                        fontFamily: 'Regular',
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextWidget(
+                        text: 'Guides:  ${herbalPlants[index].plantingGuide}',
+                        fontSize: 14,
+                        fontFamily: 'Regular',
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      } else {}
+    }
   }
 
   bool hasLoaded = false;

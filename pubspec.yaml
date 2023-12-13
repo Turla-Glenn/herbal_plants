@@ -38,6 +38,7 @@ dependencies:
   fluttertoast:
   image_picker:
   tflite_v2:
+  get_storage:
 
 dev_dependencies:
   flutter_test:
