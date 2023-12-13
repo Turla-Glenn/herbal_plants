@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,6 +28,8 @@ class _CameraTabState extends State<CameraTab> {
   late String name = '';
 
   late String numbers = '';
+
+  final box = GetStorage();
 
   getImageCamera(String imgsrc) async {
     setState(() {
@@ -78,6 +81,8 @@ class _CameraTabState extends State<CameraTab> {
 
       str = result[0]['label'].toString().split(' ')[1];
     });
+
+    box.write('plant', str);
 
     print(str);
     for (int index = 0; index < herbalPlants.length; index++) {

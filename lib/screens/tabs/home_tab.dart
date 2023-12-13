@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRecentPlant();
+  }
+
+  final box = GetStorage();
+
+  String name = '';
+
+  getRecentPlant() {
+    for (int index = 0; index < herbalPlants.length; index++) {
+      if (herbalPlants[index].commonName == box.read('plant')) {
+        setState(() {
+          name = herbalPlants[index].commonName;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +55,17 @@ class HomeTab extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  image: DecorationImage(
-                    opacity: 125,
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                        'assets/images/${herbalPlants[0].commonName}.jpg'),
-                  ),
+                  image: name == ''
+                      ? null
+                      : DecorationImage(
+                          opacity: 125,
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/$name.jpg'),
+                        ),
                 ),
                 child: Center(
                   child: TextWidget(
-                    text: herbalPlants[0].commonName,
+                    text: name == '' ? 'No recent plant' : name,
                     fontSize: 24,
                     color: Colors.white,
                     fontFamily: 'Bold',
