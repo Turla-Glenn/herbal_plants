@@ -65,14 +65,7 @@ List<HerbalPlant> herbalPlants = [
     plantingGuide:
         "Pansit-Pansitan can be grown in pots or in the ground, and it prefers moist, well-drained soil.",
   ),
-  HerbalPlant(
-    commonName: "Siling Labuyo",
-    scientificName: "Capsicum frutescens",
-    description:
-        "Siling Labuyo, also known as Bird's Eye Chili, is a spicy pepper used as a condiment and has potential health benefits, including pain relief and weight management.",
-    plantingGuide:
-        "Siling Labuyo can be grown in well-drained soil, and it requires full sun to thrive.",
-  ),
+
   HerbalPlant(
     commonName: "Tanglad",
     scientificName: "Cymbopogon citratus",
@@ -113,14 +106,7 @@ List<HerbalPlant> herbalPlants = [
     plantingGuide:
         "Ampalaya prefers well-drained soil and full sun. It can be grown from seeds.",
   ),
-  HerbalPlant(
-    commonName: "Tuba-Tuba",
-    scientificName: "Jatropha curcas",
-    description:
-        "Tuba-Tuba is a small tree with potential medicinal uses, including as a remedy for constipation and skin ailments.",
-    plantingGuide:
-        "Tuba-Tuba prefers well-drained soil and full sun. It can be propagated from seeds or cuttings.",
-  ),
+
   HerbalPlant(
     commonName: "Malunggay",
     scientificName: "Moringa oleifera",
@@ -129,14 +115,7 @@ List<HerbalPlant> herbalPlants = [
     plantingGuide:
         "Malunggay prefers well-drained soil and full sun. It can be grown from seeds or cuttings.",
   ),
-  HerbalPlant(
-    commonName: "Sampalok",
-    scientificName: "Tamarindus indica",
-    description:
-        "Sampalok, or Tamarind, is a fruit tree known for its tangy fruit and potential health benefits. It is used to treat digestive issues and is a rich source of vitamin C.",
-    plantingGuide:
-        "Sampalok prefers well-drained soil and full sun. It can be grown from seeds or grafting.",
-  ),
+
   HerbalPlant(
     commonName: "Luyang Dilaw",
     scientificName: "Curcuma longa",
@@ -145,14 +124,7 @@ List<HerbalPlant> herbalPlants = [
     plantingGuide:
         "Luyang Dilaw prefers well-drained soil and partial shade. It can be propagated from rhizome cuttings.",
   ),
-  HerbalPlant(
-    commonName: "Pandan",
-    scientificName: "Pandanus amaryllifolius",
-    description:
-        "Pandan is used for its aromatic leaves in cooking and for its potential health benefits, including its antispasmodic and anti-inflammatory properties.",
-    plantingGuide:
-        "Pandan prefers well-drained soil and partial shade. It can be propagated from stem cuttings or seeds.",
-  ),
+
   HerbalPlant(
     commonName: "Manzanilla",
     scientificName: "Chamaemelum nobile",
@@ -161,5 +133,6 @@ List<HerbalPlant> herbalPlants = [
     plantingGuide:
         "Manzanilla prefers well-drained soil and full sun to partial shade. It can be propagated from seeds or division.",
   ),
+
   // Add more herbal plants with their details here
 ];
