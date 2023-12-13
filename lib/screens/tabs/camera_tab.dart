@@ -189,7 +189,7 @@ class _CameraTabState extends State<CameraTab> {
         children: [
           GestureDetector(
             onTap: () {
-              getImageCamera('gallery');
+              getImageCamera('camera');
             },
             child: Card(
               child: Container(
