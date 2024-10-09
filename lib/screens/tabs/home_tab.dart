@@ -5,6 +5,8 @@ import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/screens/crop_details_page.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 
+import '../../data/values.dart';
+
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
 

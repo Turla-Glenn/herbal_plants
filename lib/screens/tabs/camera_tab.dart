@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:herbal_plants/data/plants.dart';
+import 'package:herbal_plants/data/values.dart';
+import 'package:herbal_plants/screens/result_screen.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
@@ -79,97 +81,16 @@ class _CameraTabState extends State<CameraTab> {
     setState(() {
       result = res!;
 
-      str = result[0]['label'].toString().split(' ')[1];
+      str = result[0]['label'];
     });
 
     box.write('plant', str);
 
-    print(str);
-    for (int index = 0; index < herbalPlants.length; index++) {
-      if (herbalPlants[index].commonName == str) {
-        showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return SizedBox(
-              height: 500,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                                'assets/images/${herbalPlants[index].commonName}.jpg'),
-                          ),
-                        ),
-                      ),
-                      const Divider(),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextWidget(
-                        text: herbalPlants[index].commonName,
-                        fontSize: 24,
-                        fontFamily: 'Bold',
-                        color: Colors.black,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextWidget(
-                        text:
-                            'Scientific name: ${herbalPlants[index].scientificName}',
-                        fontSize: 18,
-                        fontFamily: 'Bold',
-                        color: Colors.black,
-                      ),
-                      TextWidget(
-                        text:
-                            'Plant description: ${herbalPlants[index].description}',
-                        fontSize: 14,
-                        fontFamily: 'Regular',
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextWidget(
-                        text: 'Guides:  ${herbalPlants[index].plantingGuide}',
-                        fontSize: 14,
-                        fontFamily: 'Regular',
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      } else {}
-    }
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ResultScreen(
+              index: int.parse(str.split(' ')[0]),
+              file: pickedImage,
+            )));
   }
 
   bool hasLoaded = false;
@@ -189,7 +110,30 @@ class _CameraTabState extends State<CameraTab> {
         children: [
           GestureDetector(
             onTap: () {
-              getImageCamera('camera');
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          getImageCamera('camera');
+                        },
+                        title: const Text('Camera'),
+                        trailing: const Icon(Icons.camera),
+                      ),
+                      ListTile(
+                        onTap: () {
+                          getImageCamera('gallery');
+                        },
+                        title: const Text('Gallery'),
+                        trailing: const Icon(Icons.photo),
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             child: Card(
               child: Container(
@@ -209,7 +153,7 @@ class _CameraTabState extends State<CameraTab> {
                       height: 10,
                     ),
                     TextWidget(
-                      text: 'Scan Plant',
+                      text: 'Scan Crop',
                       fontSize: 32,
                       color: Colors.blue,
                       fontFamily: 'Bold',

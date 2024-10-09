@@ -1,8 +1,10 @@
-0 Oregano
-1 Malunggay
-2 Luya
-3 Lagundi
-4 Bayabas
-5 Bawang
-6 Ampalaya
-7 Aloe Vera
+0 Blight
+1 Common Rust
+2 Gray Leaf Spot
+3 Healthy
+4 Bacterial Leaf Blight
+5 Brown Spot
+6 Leaf Smut
+7 Anthracnose
+8 Downy Mildew
+9 Mosaic Virus
