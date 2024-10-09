@@ -25,15 +25,15 @@ class _HomePageState extends State<HomePage> {
     const HomeTab(),
     const PlantTab(),
     const CameraTab(),
-    const InfoTab()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: TextWidget(
-          text: 'HERBAL PLANTS',
+          text: 'Crop D Tech',
           fontSize: 18,
           fontFamily: 'Bold',
           color: Colors.white,
@@ -44,11 +44,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: const TextStyle(fontFamily: 'QBold'),
         unselectedLabelStyle: const TextStyle(fontFamily: 'QBold'),
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white54,
         onTap: onTabTapped,
         currentIndex: currentIndex,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
@@ -57,16 +57,12 @@ class _HomePageState extends State<HomePage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.medication_liquid_rounded),
-            label: 'Plants',
+            icon: Icon(Icons.warning_amber),
+            label: 'Disease',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             label: 'Camera',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Guide',
           ),
         ],
       ),

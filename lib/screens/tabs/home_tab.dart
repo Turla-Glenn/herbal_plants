@@ -50,41 +50,8 @@ class _HomeTabState extends State<HomeTab> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 150,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  image: name == ''
-                      ? null
-                      : DecorationImage(
-                          opacity: 125,
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/images/$name.jpg'),
-                        ),
-                ),
-                child: Center(
-                  child: TextWidget(
-                    text: name == '' ? 'No recent plant' : name,
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontFamily: 'Bold',
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextWidget(
-                text: 'Recommended',
-                fontSize: 18,
-                fontFamily: 'Bold',
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               SizedBox(
-                height: 500,
+                height: 600,
                 child: GridView.builder(
                   itemCount: herbalPlants.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
