@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:herbal_plants/data/newdata.dart';
 import 'package:herbal_plants/data/plants.dart';
+import 'package:herbal_plants/screens/crop_details_page.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
 
 class HomeTab extends StatefulWidget {
@@ -43,7 +45,7 @@ class _HomeTabState extends State<HomeTab> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextWidget(
-                text: 'Recently Scanned Plant:',
+                text: 'Crops Available',
                 fontSize: 18,
                 fontFamily: 'Bold',
               ),
@@ -53,33 +55,41 @@ class _HomeTabState extends State<HomeTab> {
               SizedBox(
                 height: 600,
                 child: GridView.builder(
-                  itemCount: herbalPlants.length,
+                  itemCount: crops.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 500,
-                            height: 125,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                    'assets/images/${herbalPlants[index].commonName}.jpg'),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => CropDetailsPage(
+                                    data: crops[index],
+                                  )));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 500,
+                              height: 125,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/${crops[index]['name'].toString().toLowerCase()}.PNG'),
+                                ),
                               ),
                             ),
-                          ),
-                          TextWidget(
-                            text: herbalPlants[index].commonName,
-                            fontSize: 18,
-                            fontFamily: 'Bold',
-                          ),
-                        ],
+                            TextWidget(
+                              text: crops[index]['name'],
+                              fontSize: 18,
+                              fontFamily: 'Bold',
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
