@@ -6,6 +6,7 @@ import 'package:herbal_plants/data/plants.dart';
 import 'package:herbal_plants/data/values.dart';
 import 'package:herbal_plants/screens/result_screen.dart';
 import 'package:herbal_plants/widgets/text_widget.dart';
+import 'package:herbal_plants/widgets/toast_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 
@@ -84,13 +85,18 @@ class _CameraTabState extends State<CameraTab> {
       str = result[0]['label'];
     });
 
-    box.write('plant', str);
+    print(result[0]['confidence'] > 0.9);
 
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ResultScreen(
-              index: int.parse(str.split(' ')[0]),
-              file: pickedImage,
-            )));
+    if (result[0]['confidence'] > 0.9) {
+      box.write('plant', str);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ResultScreen(
+                index: int.parse(str.split(' ')[0]),
+                file: pickedImage,
+              )));
+    } else {
+      showToast('No result found!');
+    }
   }
 
   bool hasLoaded = false;
